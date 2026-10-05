@@ -2,7 +2,9 @@ import './App.css'
 import Nav from './Nav.jsx'
 import { useState } from 'react';
 import { UserContext } from './Context/UserContest.js';
-import { ThemeContext } from './Context/ThemeContext.js'
+import { ThemeContext } from './Context/ThemeContext.js';
+import { LoginContext } from './Context/LoginContext.js';
+import Login from './Login.jsx';
 
 function App() {
 
@@ -25,6 +27,14 @@ function App() {
 
   function toogleTheme(){
       setTheme(prev=>prev === "light" ? "dark" : "light");
+  }
+
+  // ======
+
+  const [login,setlogin] = useState("Login Page");
+
+  function tooglepage(){
+    setlogin(prev=>prev === "Login Page" ? "SignUp Page" : "Login Page")
   }
 
   return (
@@ -56,6 +66,20 @@ function App() {
           <Nav/>
         </UserContext.Provider>
       </ThemeContext.Provider>
+
+      {/*======*/}
+
+      <h1>3rd concept</h1>
+      
+      <LoginContext.Provider value={{login, setlogin: tooglepage}}>
+        <ThemeContext.Provider value = {{theme,toogleTheme}}>
+          <UserContext.Provider value={user}>
+            <Login/>
+          </UserContext.Provider>
+        </ThemeContext.Provider>
+      </LoginContext.Provider>
+
+
     </>
   )
 }
