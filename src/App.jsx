@@ -41,7 +41,9 @@ function App() {
       <UserContext.Provider value={user}>
       <h1>App Component</h1>
       <hr />
-      <Nav />
+      <ThemeContext.Provider value = {{theme,toogleTheme}}>
+        <Nav />
+      </ThemeContext.Provider>
       </UserContext.Provider>
 
 
@@ -50,7 +52,9 @@ function App() {
       <h1>2nd concept</h1>
 
       <ThemeContext.Provider value = {{theme,toogleTheme}}>
-        <Nav/>
+        <UserContext.Provider value={user}>
+          <Nav/>
+        </UserContext.Provider>
       </ThemeContext.Provider>
     </>
   )
