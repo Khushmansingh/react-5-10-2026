@@ -1,6 +1,8 @@
 import './App.css'
 import Nav from './Nav.jsx'
+import { useState } from 'react';
 import { UserContext } from './Context/UserContest.js';
+import { ThemeContext } from './Context/ThemeContext.js'
 
 function App() {
 
@@ -16,6 +18,14 @@ function App() {
     age : 18
   }
 
+
+  // ======
+
+  const [theme , setTheme] = useState("Light");
+
+  function toogleTheme(){
+      setTheme(prev=>prev === "light" ? "dark" : "light");
+  }
 
   return (
     <>
@@ -33,6 +43,15 @@ function App() {
       <hr />
       <Nav />
       </UserContext.Provider>
+
+
+      {/*========*/}
+
+      <h1>2nd concept</h1>
+
+      <ThemeContext.Provider value = {{theme,toogleTheme}}>
+        <Nav/>
+      </ThemeContext.Provider>
     </>
   )
 }
